@@ -1,5 +1,4 @@
 defmodule CypherTest do
-  require IEx
   use ExUnit.Case
   doctest Cypher
 
