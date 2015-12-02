@@ -2,13 +2,6 @@ defmodule CypherTest do
   require IEx
   use ExUnit.Case
   doctest Cypher
-  @leex_file 'lib/cypher/lexers/cypher_lexer.xrl'
-
-  setup_all do
-    {:ok, lexer_path} = :leex.file(@leex_file)
-    IEx.Helpers.c(String.Chars.to_string(lexer_path))
-    :ok
-  end
 
   test "Can tokenize labels" do
     {:ok, tokens, _} = :cypher_lexer.string(String.to_char_list(":lorem_ipsum"))

@@ -1,13 +1,23 @@
-defmodule Cypher.Mixfile do
+defmodule Cypherex.Mixfile do
   use Mix.Project
 
+  @version "0.0.1"
+  @description "Cypher query language parsing library"
+  @repo_url "https://github.com/johnhamelink/cyphex"
+
   def project do
-    [app: :cypher,
-     version: "0.0.1",
+    [app: :cypherex,
+     name: "Cypherex",
+     version: @version,
      elixir: "~> 1.1",
+     description: @description,
+     package: package,
+     source_url: @repo_url,
+     homepage_url: @repo_url,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps]
+     deps: deps,
+     docs: [main: "README", extras: ["README.md"]]]
   end
 
   # Configuration for the OTP application
@@ -34,5 +44,12 @@ defmodule Cypher.Mixfile do
       {:earmark, "~> 0.1", only: :dev},
       {:ex_doc, "~> 0.11", only: :dev}
     ]
+  end
+
+  defp package do
+    [maintainers: ["John Hamelink"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => @repo_url},
+     files: ~w(lib src/*.xrl src/*.yrl mix.exs *.md LICENSE)]
   end
 end
