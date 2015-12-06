@@ -34,6 +34,7 @@ begin                : skip_token.
 commit               : skip_token.
 schema               : skip_token.
 await                : skip_token.
+\#(.+)               : skip_token.
 {VARIABLE}           : {token, {variable, TokenLine, TokenChars}}.
 {WHITESPACE}+        : skip_token.
 
