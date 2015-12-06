@@ -1,4 +1,4 @@
-Nonterminals attributes elems elem statement create_action match_action node nodes labels create_relation relation relations rel_operator relation_edge node_content node_contents variables relationship.
+Nonterminals attributes elems elem statement create_action match_action node nodes labels create_relation relation rel_operator relation_edge node_content node_contents variables relationship.
 Terminals attributes_open attribute attributes_close comma int atom label match create node_open node_close variable parent_of child_of related_to relationship_open relationship_close.
 Rootsymbol statement.
 
