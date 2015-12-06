@@ -1,21 +1,14 @@
 defmodule Cypher.ParserTest do
   use ExUnit.Case
-  alias Cyphex.Lexer
-
-  @yecc_file 'src/cypher_parser.yrl'
-
-  setup_all do
-    {:ok, lexer_path} = :yecc.file(@yecc_file)
-    IEx.Helpers.c(String.Chars.to_string(lexer_path))
-    :ok
-  end
+  alias Cyphex.Parser, as: P
+  alias Cyphex.Lexer, as: L
 
   test "CREATE statements" do
     query = ~s"""
     CREATE (:User:Toast)
     """
-    {:ok, tokens, _line} = Lexer.string(query)
-    {:ok, ast} = :cypher_parser.parse(tokens)
+    {:ok, tokens, _line} = L.string(query)
+    {:ok, ast} = P.parse(tokens)
     assert ast == {
       :create, {
         :node,
@@ -28,8 +21,8 @@ defmodule Cypher.ParserTest do
     query = ~S"""
       CREATE (:User:Toast {`email`:'john@doe.com', `lorem`:'ipsum'})
     """
-    {:ok, tokens, _line} = Lexer.string(query)
-    {:ok, ast} = :cypher_parser.parse(tokens)
+    {:ok, tokens, _line} = L.string(query)
+    {:ok, ast} = P.parse(tokens)
     assert ast == {
       :create,
       {:node,
@@ -48,8 +41,8 @@ defmodule Cypher.ParserTest do
     query = ~S"""
       MATCH (n1:`Session`{`email`:"jim@lorem.com"}), (n2:`Sport`{`name`:"Quiddich"}) CREATE (n1)-[:`LIKED_SPORT`]->(n2)
     """
-    {:ok, tokens, _line} = Lexer.string(query)
-    {:ok, ast} = :cypher_parser.parse(tokens)
+    {:ok, tokens, _line} = L.string(query)
+    {:ok, ast} = P.parse(tokens)
     assert ast == {:match, [
         node: [
           [
