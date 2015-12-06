@@ -13,7 +13,7 @@ defmodule CypherTest do
     """
     {:ok, tokens, _} = :cypher_lexer.string(String.to_char_list(create_node))
     assert tokens == [
-      {:variable, 1, 'CREATE'},
+      {:create, 1},
       {:node_open, 1},
       {:label, 1, 'Session'},
       {:label, 1, 'User'},
@@ -38,7 +38,7 @@ defmodule CypherTest do
     {:ok, tokens, _} = :cypher_lexer.string(String.to_char_list(create_node))
 
     assert tokens == [
-      {:variable, 1, 'MATCH'},
+      {:match, 1},
       {:node_open, 1},
         {:variable, 1, 'n1'},
         {:label, 1, 'Session'},
@@ -54,7 +54,7 @@ defmodule CypherTest do
           {:attribute, 1, ['name', 'Quiddich']},
         {:attributes_close, 1},
       {:node_close, 1},
-      {:variable, 1, 'CREATE'},
+      {:create, 1},
       {:node_open, 1},
         {:variable, 1, 'n1'},
       {:node_close, 1},

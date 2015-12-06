@@ -14,7 +14,6 @@ Rules.
 {STRING}             : {token, {string, TokenLine, remove_quotes(TokenChars)}}.
 {STRING}\:{WHITESPACE}*{STRING}   : {token, {attribute, TokenLine, key_value(TokenChars)}}.
 {STRING}\:{WHITESPACE}*{NUMBER}   : {token, {attribute, TokenLine, key_value(TokenChars)}}.
-{VARIABLE}           : {token, {variable, TokenLine, TokenChars}}.
 CREATE               : {token, {create, TokenLine}}.
 MATCH                : {token, {match, TokenLine}}.
 RETURN               : {token, {return, TokenLine}}.
@@ -35,6 +34,7 @@ begin                : skip_token.
 commit               : skip_token.
 schema               : skip_token.
 await                : skip_token.
+{VARIABLE}           : {token, {variable, TokenLine, TokenChars}}.
 {WHITESPACE}+        : skip_token.
 
 Erlang code.
