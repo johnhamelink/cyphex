@@ -1,8 +1,9 @@
 defmodule CypherTest do
   use ExUnit.Case
+  alias Cyphex.Lexer
 
   test "tokenizes labels" do
-    {:ok, tokens, _} = :cypher_lexer.string(String.to_char_list(":lorem_ipsum"))
+    {:ok, tokens, _} = Lexer.string(":lorem_ipsum")
     assert tokens == [{:label, 1, 'lorem_ipsum'}]
   end
 
@@ -10,7 +11,7 @@ defmodule CypherTest do
     create_node = ~S"""
     CREATE (:`Session`:`User` {`email`:"jimbob@email.com", `facebook_id`:"1111111111", `model_id`:1, `uuid`:"b5f898e7-b818-4fd4-93ea-54506526039d"});
     """
-    {:ok, tokens, _} = :cypher_lexer.string(String.to_char_list(create_node))
+    {:ok, tokens, _} = Lexer.string(create_node)
     assert tokens == [
       {:create, 1},
       {:node_open, 1},
@@ -34,7 +35,7 @@ defmodule CypherTest do
     create_node = ~S"""
       MATCH (n1:`Session`{`email`:"jim@lorem.com"}), (n2:`Sport`{`name`:"Quiddich"}) CREATE (n1)-[:`LIKED_SPORT`]->(n2);
     """
-    {:ok, tokens, _} = :cypher_lexer.string(String.to_char_list(create_node))
+    {:ok, tokens, _} = Lexer.string(create_node)
 
     assert tokens == [
       {:match, 1},
@@ -74,7 +75,7 @@ defmodule CypherTest do
       CREATE (:`Session`:`User` {`email`:"jimbob@email.com", `facebook_id`:"1111111111", `model_id`:1, `uuid`:"b5f898e7-b818-4fd4-93ea-54506526039d"});
       MATCH (n1:`Session`{`email`:"jim@lorem.com"}), (n2:`Sport`{`name`:"Quiddich"}) CREATE (n1)-[:`LIKED_SPORT`]->(n2);
     """
-    {:ok, tokens, _} = :cypher_lexer.string(String.to_char_list(create_node))
+    {:ok, tokens, _} = Lexer.string(create_node)
 
     assert tokens == [
       {:create, 1},
@@ -131,7 +132,7 @@ defmodule CypherTest do
       # Comment taking whole line here.
       CREATE (:`Session`:`User`); # Comment appended to line here
     """
-    {:ok, tokens, _} = :cypher_lexer.string(String.to_char_list(create_node))
+    {:ok, tokens, _} = Lexer.string(create_node)
     assert tokens == [
       {:create, 2},
       {:node_open, 2},
