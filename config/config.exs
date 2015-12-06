@@ -10,7 +10,7 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :cypher, key: :value
+#     config :cyphex, key: :value
 #
 # And access this configuration in your application as:
 #

@@ -1,13 +1,12 @@
 defmodule CypherTest do
   use ExUnit.Case
-  doctest Cypher
 
-  test "Can tokenize labels" do
+  test "tokenizes labels" do
     {:ok, tokens, _} = :cypher_lexer.string(String.to_char_list(":lorem_ipsum"))
     assert tokens == [{:label, 1, 'lorem_ipsum'}]
   end
 
-  test "Can tokenize whole create node statements" do
+  test "tokenizes create node statements" do
     create_node = ~S"""
     CREATE (:`Session`:`User` {`email`:"jimbob@email.com", `facebook_id`:"1111111111", `model_id`:1, `uuid`:"b5f898e7-b818-4fd4-93ea-54506526039d"});
     """
@@ -31,7 +30,7 @@ defmodule CypherTest do
     ]
   end
 
-  test "Can tokenize relationship statements" do
+  test "tokenizes relationship statements" do
     create_node = ~S"""
       MATCH (n1:`Session`{`email`:"jim@lorem.com"}), (n2:`Sport`{`name`:"Quiddich"}) CREATE (n1)-[:`LIKED_SPORT`]->(n2);
     """
@@ -70,7 +69,7 @@ defmodule CypherTest do
     ]
   end
 
-  test "Can handle multiple lines" do
+  test "multiple lines" do
     create_node = ~S"""
       CREATE (:`Session`:`User` {`email`:"jimbob@email.com", `facebook_id`:"1111111111", `model_id`:1, `uuid`:"b5f898e7-b818-4fd4-93ea-54506526039d"});
       MATCH (n1:`Session`{`email`:"jim@lorem.com"}), (n2:`Sport`{`name`:"Quiddich"}) CREATE (n1)-[:`LIKED_SPORT`]->(n2);
@@ -127,7 +126,7 @@ defmodule CypherTest do
 
   end
 
-  test "Can ignore comments" do
+  test "ignores comments" do
     create_node = ~S"""
       # Comment taking whole line here.
       CREATE (:`Session`:`User`); # Comment appended to line here

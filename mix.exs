@@ -1,13 +1,13 @@
-defmodule Cypherex.Mixfile do
+defmodule Cyphex.Mixfile do
   use Mix.Project
 
   @version "0.0.1"
-  @description "Cypher query language parsing library"
+  @description "Cypher query language parsing library for Elixir"
   @repo_url "https://github.com/johnhamelink/cyphex"
 
   def project do
-    [app: :cypherex,
-     name: "Cypherex",
+    [app: :cyphex,
+     name: "Cyphex",
      version: @version,
      elixir: "~> 1.1",
      description: @description,

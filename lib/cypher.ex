@@ -1,2 +1,0 @@
-defmodule Cypher do
-end
