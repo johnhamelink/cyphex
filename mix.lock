@@ -1,7 +1,8 @@
-%{"earmark": {:hex, :earmark, "0.1.19"},
+%{"dbg": {:git, "https://github.com/fishcakez/dbg.git", "5458f74c37679c19718b0e1a872d838c1ae20073", []},
+  "earmark": {:hex, :earmark, "0.1.19"},
   "ex_doc": {:hex, :ex_doc, "0.11.1"},
   "ex_spec": {:hex, :ex_spec, "1.0.0"},
   "fs": {:hex, :fs, "0.9.2"},
   "inch_ex": {:hex, :inch_ex, "0.4.0"},
-  "mix_test_watch": {:hex, :mix_test_watch, "0.2.4"},
+  "mix_test_watch": {:git, "https://github.com/johnhamelink/mix-test.watch.git", "4078f6de456a0e71722aabe5039db6cbc3a6aa43", []},
   "poison": {:hex, :poison, "1.5.0"}}

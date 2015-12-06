@@ -23,9 +23,11 @@ defmodule Cyphex.Mixfile do
   # Configuration for the OTP application
   #
   # Type "mix help compile.app" for more information
-  def application do
-    [applications: [:logger]]
-  end
+  def application, do: application(Mix.env)
+  def application(:dev), do: [applications: [:logger, :dbg]]
+  def application(:test), do: [applications: [:logger, :dbg]]
+  def application(_), do: [applications: [:logger]]
+
 
   # Dependencies can be Hex packages:
   #
@@ -38,7 +40,7 @@ defmodule Cyphex.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:mix_test_watch, "~> 0.2", only: :dev},
+      {:dbg, github: "fishcakez/dbg", only: [:dev,:test]},
       {:ex_spec, "~> 1.0.0", only: :test},
       {:inch_ex, only: :docs},
       {:earmark, "~> 0.1", only: :dev},
