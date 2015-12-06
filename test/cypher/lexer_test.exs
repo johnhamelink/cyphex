@@ -1,4 +1,4 @@
-defmodule CypherTest do
+defmodule Cypher.LexerTest do
   use ExUnit.Case
   alias Cyphex.Lexer
 
